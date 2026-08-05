@@ -10,19 +10,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="HooCS Hub" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Grotesk:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              serif: ['"Cormorant Garamond"', "Georgia", "serif"],
-              sans: ['"Space Grotesk"', "system-ui", "sans-serif"],
+              serif: ['"Libre Caslon Text"', "Georgia", "serif"],
+              sans: ['"Libre Franklin"', "system-ui", "sans-serif"],
             },
           },
         },
@@ -33,6 +28,69 @@
       defer
     ></script>
     <link rel="stylesheet" href="/styles.css" />
+    <style>
+      .tab-bar {
+        display: flex;
+        gap: 2.5rem;
+        border-bottom: 1px solid var(--border);
+        margin: 2rem 0 2.5rem 0;
+        justify-content: center;
+      }
+      .tab-btn {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 400;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--dim);
+        padding: 0.4rem 0 1rem 0;
+        margin-bottom: -1px;
+        border: 0;
+        border-bottom: 1px solid transparent;
+        background: transparent;
+        cursor: pointer;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .tab-btn:hover { color: var(--fg); }
+      .tab-btn.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+      .tab-panel[hidden] { display: none; }
+      .tbd-panel {
+        padding: 3rem 0;
+        text-align: center;
+      }
+      .tbd-heading {
+        font-family: "Libre Caslon Text", Georgia, serif;
+        font-size: 2rem;
+        font-weight: 400;
+        color: var(--fg);
+        margin-bottom: 1rem;
+        letter-spacing: 0.02em;
+      }
+      .tbd-body {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.75;
+        color: var(--dim);
+        font-weight: 300;
+        max-width: 560px;
+        margin: 0 auto;
+      }
+      .tbd-body a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(229, 114, 0, 0.4);
+        transition: color 0.2s, border-color 0.2s;
+      }
+      .tbd-body a:hover {
+        color: var(--fg);
+        border-bottom-color: var(--fg);
+      }
+    </style>
   </head>
   <body>
     <canvas id="canvas-bg"></canvas>
@@ -43,7 +101,7 @@
           class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center justify-between px-6 md:px-12 border-b"
           style="
             border-color: var(--border);
-            background: rgba(11, 12, 16, 0.75);
+            background: rgba(35, 45, 75, 0.75);
             backdrop-filter: blur(16px);
           "
         >
@@ -52,11 +110,11 @@
             class="flex items-center gap-3 no-underline"
             style="color: var(--fg)"
           >
-            <img src="/logo.svg" height="64" width="128" />
+            <img src="/Images/HooCS%20Reverse%20Logo%20No%20Text.svg" height="64" width="128" />
             <span
-              class="font-serif text-[1.15rem] font-semibold tracking-[0.04em] leading-tight"
+              class="font-serif text-[1.05rem] font-semibold tracking-[0.02em] leading-tight"
             >
-              HooCS
+              Hoomanistic Cognitive Science
               <span
                 class="block font-sans font-light tracking-[0.15em] uppercase"
                 style="font-size: 0.55rem; color: var(--dim)"
@@ -94,7 +152,7 @@
           class="fixed top-16 left-0 right-0 z-40 flex flex-col gap-6 px-8 py-8 md:hidden"
           style="
             display: none !important;
-            background: rgba(11, 12, 16, 0.96);
+            background: rgba(35, 45, 75, 0.96);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
           "
@@ -132,7 +190,7 @@
       </script>
 
       <main class="fade-in page-pad px-12 pt-16">
-        <div class="max-w-3xl py-20">
+        <div class="max-w-3xl mx-auto pt-20 pb-4 text-center">
           <p
             class="font-sans font-normal tracking-[0.2em] uppercase mb-6"
             style="font-size: 0.7rem; color: var(--accent)"
@@ -146,7 +204,7 @@
             Speakers
           </h2>
           <p
-            class="font-sans font-light mb-12"
+            class="font-sans font-light"
             style="
               font-size: 0.85rem;
               color: var(--dim);
@@ -156,100 +214,145 @@
             Scholars bringing humanistic and scientific perspectives on mind to
             UVA.
           </p>
+        </div>
 
-          <table class="speakers-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Affiliation</th>
-                <th>Topic / Area</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="name">Blake Harris</td>
-                <td>Philosophy, UVA</td>
-                <td>The Corruption of Salience</td>
-                <td><span class="badge">Draft</span></td>
-              </tr>
-              <tr>
-                <td class="name">Gabi Dumet</td>
-                <td>Philosophy, UVA</td>
-                <td>
-                  Being Torn: Response dependent responsibility and
-                  psychological self-conflict
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="name">Eric Schwitzgebel (with Jeremy Prober)</td>
-                <td>Philosophy, University of California Riverside</td>
-                <td>Human-AI interaction &amp; agency</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="name">Austin Cooper</td>
-                <td>Contemplative Sciences Center, UVA</td>
-                <td>
-                  Self-Similarity of Perception and Neural Dynamics as a Result
-                  of Meditation
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="name">Rushil Umaretiya</td>
-                <td>Philosophy, UVA</td>
-                <td>
-                  The Algorithmic Suppression of Political Salience: Why
-                  Platforms Systematically Deprioritize Actionable Concerns
-                </td>
-                <td><div class="badge">Draft</div></td>
-              </tr>
-              <tr>
-                <td class="name">David Danks</td>
-                <td>Philosophy &amp; Data Science, UVA</td>
-                <td>Psychological Freedom, Rationality, and Responsibility</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div
-            class="mt-8 p-5"
-            style="
-              border-left: 2px solid var(--accent2);
-              background: rgba(232, 230, 225, 0.03);
-            "
-          >
-            <p style="font-size: 0.82rem; color: var(--dim); line-height: 1.65">
-              <strong style="color: var(--fg)">Note:</strong> The speaker list
-              is subject to change as we finalize details with speakers. Check
-              back for updates! If you're interested in speaking or have
-              suggestions for speakers, please
-              <a
-                href="mailto:mailto:zci7c@virginia.edu"
-                class="underline"
-                style="color: var(--accent)"
-                >contact us</a
-              >.
-            </p>
+        <div class="max-w-3xl mx-auto pb-20">
+          <div class="tab-bar" role="tablist">
+            <button class="tab-btn active" data-tab="25-26" role="tab" aria-selected="true">25–26</button>
+            <button class="tab-btn" data-tab="fall-26" role="tab" aria-selected="false">Fall 2026</button>
           </div>
+
+          <section id="tab-25-26" class="tab-panel" role="tabpanel">
+            <table class="speakers-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Affiliation</th>
+                  <th>Topic / Area</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="name">Blake Harris</td>
+                  <td>Philosophy, UVA</td>
+                  <td>The Corruption of Salience</td>
+                  <td><span class="badge">Draft</span></td>
+                </tr>
+                <tr>
+                  <td class="name">Gabi Dumet</td>
+                  <td>Philosophy, UVA</td>
+                  <td>
+                    Being Torn: Response dependent responsibility and
+                    psychological self-conflict
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="name">Eric Schwitzgebel (with Jeremy Prober)</td>
+                  <td>Philosophy, University of California Riverside</td>
+                  <td>Human-AI interaction &amp; agency</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="name">Austin Cooper</td>
+                  <td>Contemplative Sciences Center, UVA</td>
+                  <td>
+                    Self-Similarity of Perception and Neural Dynamics as a Result
+                    of Meditation
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="name">Rushil Umaretiya</td>
+                  <td>Philosophy, UVA</td>
+                  <td>
+                    The Algorithmic Suppression of Political Salience: Why
+                    Platforms Systematically Deprioritize Actionable Concerns
+                  </td>
+                  <td><div class="badge">Draft</div></td>
+                </tr>
+                <tr>
+                  <td class="name">David Danks</td>
+                  <td>Philosophy &amp; Data Science, UVA</td>
+                  <td>Psychological Freedom, Rationality, and Responsibility</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div
+              class="mt-8 p-5"
+              style="
+                border-left: 2px solid var(--accent2);
+                background: rgba(232, 230, 225, 0.03);
+              "
+            >
+              <p style="font-size: 0.82rem; color: var(--dim); line-height: 1.65">
+                <strong style="color: var(--fg)">Note:</strong> The speaker list
+                is subject to change as we finalize details with speakers. Check
+                back for updates! If you're interested in speaking or have
+                suggestions for speakers, please
+                <a
+                  href="mailto:hoocs@virginia.edu"
+                  class="underline"
+                  style="color: var(--accent)"
+                  >contact us</a
+                >.
+              </p>
+            </div>
+          </section>
+
+          <section id="tab-fall-26" class="tab-panel" role="tabpanel" hidden>
+            <div class="tbd-panel">
+              <h3 class="tbd-heading">To Be Announced</h3>
+              <p class="tbd-body">
+                Fall 2026 speakers will be announced soon. If you would like to
+                present in Fall 2026 or be added to the Lab mailing list for
+                2025–2026, please email
+                <a href="mailto:hoocs@virginia.edu">hoocs@virginia.edu</a>.
+              </p>
+            </div>
+          </section>
         </div>
       </main>
-      <footer
-        class="relative z-10 flex flex-wrap items-center justify-between gap-4 px-12 py-10"
-      >
-        <div class="flex flex-col gap-1">
-          <span
-            class="font-serif"
-            style="font-size: 1rem; color: var(--fg); letter-spacing: 0.04em"
-            >HooCS Hub</span
-          >
-          <span>Humanistic Cognitive Science · University of Virginia</span>
-        </div>
-        <div>Department of Philosophy · Charlottesville, VA 22904</div>
-        <div><span id="year"></span> University of Virginia</div>
+
+      <script>
+        (function () {
+          const tabs = document.querySelectorAll(".tab-btn");
+          const panels = {
+            "25-26": document.getElementById("tab-25-26"),
+            "fall-26": document.getElementById("tab-fall-26"),
+          };
+          function setTab(name) {
+            if (!panels[name]) name = "25-26";
+            tabs.forEach((b) => {
+              const active = b.dataset.tab === name;
+              b.classList.toggle("active", active);
+              b.setAttribute("aria-selected", active ? "true" : "false");
+            });
+            Object.entries(panels).forEach(([k, el]) => {
+              if (k === name) el.removeAttribute("hidden");
+              else el.setAttribute("hidden", "");
+            });
+            if (history.replaceState) {
+              history.replaceState(null, "", "#" + name);
+            }
+          }
+          tabs.forEach((b) =>
+            b.addEventListener("click", () => setTab(b.dataset.tab)),
+          );
+          const initial = (location.hash || "").replace("#", "") || "25-26";
+          setTab(initial);
+          window.addEventListener("hashchange", () =>
+            setTab((location.hash || "").replace("#", "") || "25-26"),
+          );
+        })();
+      </script>
+      <footer class="relative z-10 flex flex-col gap-1 px-12 py-10">
+        <span class="font-serif" style="font-size: 1rem; color: var(--fg); letter-spacing: 0.04em">HooCS Hub</span>
+        <span>Humanistic Cognitive Science · University of Virginia</span>
+        <span><a href="mailto:hoocs@virginia.edu" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(232, 230, 225, 0.25)">hoocs@virginia.edu</a> · <span id="year"></span> University of Virginia</span>
         <script>
           document.getElementById("year").textContent =
             "© " + new Date().getFullYear();
@@ -276,7 +379,7 @@
         const velocities = [];
         const nodeGeo = new THREE.SphereGeometry(0.35, 6, 6);
         const lineMat = new THREE.LineBasicMaterial({
-          color: 0x3a7a80,
+          color: 0xF9DCBF,
           transparent: true,
           opacity: 0.18,
         });
@@ -284,7 +387,7 @@
         const nodes = [];
         for (let i = 0; i < N; i++) {
           const mat = new THREE.MeshBasicMaterial({
-            color: 0x4ca8b0,
+            color: 0xE57200,
             transparent: true,
             opacity: 0.55,
           });

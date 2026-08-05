@@ -1,8 +1,44 @@
+@font-face {
+  font-family: "Libre Caslon Text";
+  src: url("/fonts/LibreCaslonText-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Libre Caslon Text";
+  src: url("/fonts/LibreCaslonText-latin-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Libre Caslon Text";
+  src: url("/fonts/LibreCaslonText-latin-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("/fonts/LibreFranklin-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("/fonts/LibreFranklin-latin-italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
-  --bg: #0b0c10;
+  --bg: #232D4B;
   --fg: #e8e6e1;
   --dim: rgba(232, 230, 225, 0.72);
-  --accent: #4ca8b0;
+  --accent: #E57200;
   --accent2: #c49b3c;
   --border: rgba(232, 230, 225, 0.1);
 }
@@ -19,7 +55,7 @@ body {
   overflow-x: hidden;
 }
 body {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: "Libre Franklin", system-ui, sans-serif;
 }
 
 #canvas-bg {
@@ -48,12 +84,21 @@ body {
   animation: fadein 0.5s ease both;
 }
 
+.hero-logo {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: clamp(120px, 22vw, 210px);
+  margin: 0 auto 0.75rem;
+}
+
 nav {
   animation: none;
 }
 
 .nav-link {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Libre Franklin", sans-serif;
   font-size: 0.78rem;
   font-weight: 400;
   letter-spacing: 0.12em;
@@ -76,7 +121,7 @@ nav {
 }
 
 h1 {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Libre Caslon Text", Georgia, serif;
   font-size: 5rem !important;
   font-weight: 300;
   line-height: 1.1;
@@ -94,7 +139,7 @@ h1 em {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Libre Caslon Text", Georgia, serif;
   font-size: 2rem;
   font-weight: 300;
   color: var(--accent);
@@ -109,13 +154,34 @@ h1 em {
     135deg,
     transparent,
     transparent 6px,
-    rgba(76, 168, 176, 0.06) 6px,
-    rgba(76, 168, 176, 0.06) 7px
+    rgba(229, 114, 0, 0.06) 6px,
+    rgba(229, 114, 0, 0.06) 7px
   );
 }
 .faculty-photo span {
   position: relative;
   z-index: 1;
+}
+.faculty-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+.faculty-photo:has(img)::after {
+  display: none;
+}
+.fac-blurb {
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid #eee;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  font-weight: 300;
 }
 
 /* CTA button */
@@ -124,7 +190,7 @@ h1 em {
   padding: 0.8rem 2.2rem;
   border: 1px solid var(--accent);
   color: var(--accent);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Libre Franklin", sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -146,7 +212,7 @@ h1 em {
 }
 .speakers-table th {
   text-align: left;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Libre Franklin", sans-serif;
   font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -165,7 +231,7 @@ h1 em {
 }
 .speakers-table td.name {
   color: var(--fg);
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: "Libre Caslon Text", Georgia, serif;
   font-size: 1.05rem;
   font-weight: 400;
 }
@@ -185,7 +251,7 @@ h1 em {
 }
 
 footer {
-  background: #05060a;
+  background: #1a2238;
   border-top: 1px solid rgba(232, 230, 225, 0.08);
   color: rgba(232, 230, 225, 0.45);
   font-size: 0.75rem;

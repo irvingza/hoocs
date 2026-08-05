@@ -3,329 +3,366 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SSHooCS — Summer Seminars in Humanistic Cognitive Science</title>
+    <title>SSHooCS 2026 — Schedule & Projects</title>
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="HooCS Hub" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Grotesk:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              serif: ['"Cormorant Garamond"', "Georgia", "serif"],
-              sans: ['"Space Grotesk"', "system-ui", "sans-serif"],
+              serif: ['"Libre Caslon Text"', "Georgia", "serif"],
+              sans: ['"Libre Franklin"', "system-ui", "sans-serif"],
             },
           },
         },
       };
     </script>
-    <script
-      src="https://simplecommenter.com/js/comments.min.js?id=sc_47b02bd7664cfdd3"
-      defer
-    ></script>
     <link rel="stylesheet" href="/styles.css" />
     <style>
-      /* White page overrides */
-      html,
-      body {
-        background: #fff;
-        color: #0b0c10;
-      }
-
-      .section-heading {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.4rem;
-        font-weight: 400;
-        color: #0b0c10;
-        margin-bottom: 0.85rem;
-      }
-
-      .eyebrow-sm {
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 0.65rem;
-        font-weight: 400;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #888;
+      .hero-block {
+        text-align: center;
         margin-bottom: 1rem;
       }
-
-      .body-copy {
-        font-size: 0.92rem;
-        line-height: 1.8;
-        color: #444;
+      .hero-block .page-title,
+      .hero-block .page-lede {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-block .page-lede {
+        max-width: 640px;
+      }
+      .hl-yellow {
+        color: #fee200;
+        font-style: normal;
+      }
+      .eyebrow {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+      .page-title {
+        font-family: "Libre Caslon Text", Georgia, serif;
+        font-size: clamp(2.4rem, 5vw, 3.8rem);
+        font-weight: 400;
+        line-height: 1.1;
+        color: var(--fg);
+        margin-bottom: 1rem;
+      }
+      .page-title em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .page-lede {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.95rem;
+        color: var(--dim);
         font-weight: 300;
+        letter-spacing: 0.02em;
       }
 
-      .body-copy a {
-        color: var(--accent);
-        text-decoration: none;
-        border-bottom: 1px solid rgba(76, 168, 176, 0.4);
+      /* Tab bar */
+      .tab-bar {
+        display: flex;
+        gap: 2.5rem;
+        border-bottom: 1px solid var(--border);
+        margin: 3.5rem 0 2.5rem 0;
+      }
+      .tab-btn {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 400;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--dim);
+        padding: 0.4rem 0 1rem 0;
+        margin-bottom: -1px;
+        border: 0;
+        border-bottom: 1px solid transparent;
+        background: transparent;
+        cursor: pointer;
         transition:
           color 0.2s,
           border-color 0.2s;
       }
-      .body-copy a:hover {
-        color: #0b0c10;
-        border-bottom-color: #0b0c10;
+      .tab-btn:hover {
+        color: var(--fg);
       }
-
-      .prose-list {
-        margin-top: 0.75rem;
-        padding-left: 1.25rem;
-      }
-      .prose-list li {
-        font-size: 0.92rem;
-        line-height: 1.8;
-        color: #444;
-        font-weight: 300;
-        margin-bottom: 0.35rem;
-        list-style-type: disc;
-      }
-      .prose-list li::marker {
+      .tab-btn.active {
         color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+      .tab-panel[hidden] {
+        display: none;
       }
 
-      /* Quick-fact table at top */
-      .facts-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 2.75rem;
+      /* Schedule */
+      .schedule-day {
+        margin-bottom: 3rem;
       }
-      .facts-table th,
-      .facts-table td {
-        text-align: left;
-        padding: 0.7rem 1rem 0.7rem 0;
-        font-size: 0.92rem;
-        line-height: 1.6;
-        vertical-align: top;
-        border-bottom: 1px solid #eee;
-      }
-      .facts-table th {
-        font-family: "Space Grotesk", sans-serif;
-        font-weight: 500;
-        color: #0b0c10;
-        width: 11rem;
-        white-space: nowrap;
-      }
-      .facts-table td {
-        color: #444;
-        font-weight: 300;
-      }
-
-      /* Who-should-apply column blocks */
-      .apply-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0;
-        border-top: 1px solid #e4e4e4;
-        border-bottom: 1px solid #e4e4e4;
-        margin-top: 0.75rem;
-      }
-      .apply-cell {
-        padding: 1.4rem 1.25rem;
-        border-right: 1px solid #e4e4e4;
-      }
-      .apply-cell:last-child {
-        border-right: none;
-      }
-      .apply-cell h4 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.15rem;
-        font-weight: 600;
-        color: #0b0c10;
-        text-align: center;
-        margin-bottom: 0.6rem;
-      }
-      .apply-cell p {
-        font-size: 0.86rem;
-        line-height: 1.7;
-        color: #555;
-        font-weight: 300;
-        text-align: center;
-      }
-
-      .pull-quote {
-        border-left: 2px solid #0b0c10;
-        padding: 0.5rem 0 0.5rem 1.1rem;
-        margin-top: 1.25rem;
-        font-family: "Cormorant Garamond", serif;
-        font-style: italic;
-        font-size: 1rem;
-        line-height: 1.6;
-        color: #333;
-      }
-
-      /* Two-column row table (seminar structure, what you receive) */
-      .row-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 0.5rem;
-      }
-      .row-table th,
-      .row-table td {
-        text-align: left;
-        vertical-align: top;
-        padding: 0.95rem 1rem 0.95rem 0;
-        border-bottom: 1px solid #eee;
-        font-size: 0.92rem;
-        line-height: 1.7;
-      }
-      .row-table th {
-        font-family: "Space Grotesk", sans-serif;
-        font-weight: 500;
-        color: #0b0c10;
-        width: 11rem;
-        white-space: nowrap;
-      }
-      .row-table td {
-        color: #444;
-        font-weight: 300;
-      }
-      .row-table th.muted {
-        color: #888;
+      .schedule-day h2 {
+        font-family: "Libre Caslon Text", Georgia, serif;
+        font-size: 1.75rem;
         font-weight: 400;
+        color: var(--fg);
+        margin-bottom: 0.35rem;
+        letter-spacing: 0.01em;
       }
-
-      /* Gold mixer/form banner */
-      .mixer-banner {
-        background: #fdf6e3;
-        border-bottom: 1px solid rgba(196, 155, 60, 0.45);
+      .schedule-day .day-note {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-left: 0.75rem;
+        vertical-align: 0.2em;
       }
-      .mixer-banner-inner {
-        max-width: 48rem;
-        margin: 0 auto;
-        padding: 1.1rem 3rem;
-        display: flex;
-        align-items: center;
-        gap: 2.25rem;
-        flex-wrap: wrap;
+      .day-underline {
+        height: 1px;
+        background: rgba(229, 114, 0, 0.35);
+        margin-bottom: 1.25rem;
       }
-      .mixer-banner-item {
-        display: flex;
-        flex-direction: column;
-        gap: 0.2rem;
-        min-width: 0;
+      .slot {
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        gap: 1.25rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
       }
-      .mixer-banner-label {
-        font-family: "Space Grotesk", sans-serif;
+      .slot .time {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--dim);
+        font-weight: 400;
+        padding-top: 0.2rem;
+      }
+      .slot .session {
+        font-family: "Libre Caslon Text", Georgia, serif;
+        font-size: 1.05rem;
+        color: var(--fg);
+        font-weight: 400;
+        line-height: 1.4;
+      }
+      .slot .session .lead {
+        display: block;
+        margin-top: 0.25rem;
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.78rem;
+        color: var(--dim);
+        font-weight: 300;
+        letter-spacing: 0.02em;
+      }
+      .slot .session .room,
+      .track .track-title .room {
+        display: block;
+        margin-top: 0.2rem;
+        font-family: "Libre Franklin", sans-serif;
         font-size: 0.62rem;
-        font-weight: 500;
-        letter-spacing: 0.18em;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: #8a6914;
-      }
-      .mixer-banner-value {
-        font-size: 0.9rem;
+        color: var(--dim);
         font-weight: 400;
-        color: #0b0c10;
+        opacity: 0.75;
       }
-      .mixer-banner a.mixer-banner-value {
-        text-decoration: none;
-        border-bottom: 1px solid rgba(196, 155, 60, 0.5);
-        transition: border-color 0.2s;
-        word-break: break-all;
-      }
-      .mixer-banner a.mixer-banner-value:hover {
-        border-bottom-color: #0b0c10;
-      }
-      .mixer-banner-divider {
-        width: 1px;
-        align-self: stretch;
-        background: rgba(196, 155, 60, 0.4);
-      }
-
-      .info-block {
-        margin-top: 2.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid #0b0c10;
-        display: grid;
-        grid-template-columns: max-content 1fr;
-        gap: 0.45rem 1.5rem;
-        font-size: 0.85rem;
-        line-height: 1.6;
-        color: #444;
-        font-weight: 300;
-      }
-      .info-block dt {
-        font-family: "Space Grotesk", sans-serif;
-        font-weight: 500;
-        color: #0b0c10;
-        letter-spacing: 0.04em;
+      .slot .session .loc {
+        display: inline-block;
+        margin-left: 0.5rem;
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        font-size: 0.72rem;
+        color: var(--accent);
+        padding: 1px 6px;
+        border: 1px solid rgba(229, 114, 0, 0.5);
+        border-radius: 2px;
+        vertical-align: 0.15em;
       }
-      .info-block dd {
-        margin: 0;
-      }
-
-      footer {
-        background: #f4f4f4 !important;
-        border-top: 1px solid #ddd !important;
-        color: #888 !important;
-      }
-      .footer-logo {
-        color: #0b0c10;
+      .slot.muted .session {
+        color: var(--dim);
+        font-style: italic;
+        font-size: 0.95rem;
       }
 
-      .cta-btn:hover {
-        background: var(--accent);
-        color: #fff;
+      /* Split (Humanists / Scientists) rows */
+      .slot.split .split-tracks {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .track {
+        border-left: 2px solid rgba(229, 114, 0, 0.6);
+        padding-left: 1rem;
+      }
+      .track .track-label {
+        display: block;
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.3rem;
+        font-weight: 500;
+      }
+      .track .track-title {
+        font-family: "Libre Caslon Text", Georgia, serif;
+        font-size: 1.02rem;
+        color: var(--fg);
+        line-height: 1.35;
+      }
+      .track .track-title .lead {
+        display: block;
+        margin-top: 0.2rem;
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.75rem;
+        color: var(--dim);
+        font-weight: 300;
       }
 
       @media (max-width: 700px) {
-        .page-pad {
-          padding-left: 1.25rem !important;
-          padding-right: 1.25rem !important;
-        }
-        .facts-table th,
-        .row-table th {
-          width: 8rem;
-        }
-        .apply-grid {
+        .slot {
           grid-template-columns: 1fr;
+          gap: 0.35rem;
         }
-        .apply-cell {
-          border-right: none;
-          border-bottom: 1px solid #e4e4e4;
-        }
-        .apply-cell:last-child {
-          border-bottom: none;
-        }
-        .info-block {
+        .slot.split .split-tracks {
           grid-template-columns: 1fr;
-          gap: 0.15rem;
-        }
-        .info-block dd {
-          margin-bottom: 0.6rem;
-        }
-        .mixer-banner-inner {
-          padding: 1rem 1.25rem;
           gap: 1rem;
         }
-        .mixer-banner-divider {
-          display: none;
-        }
+      }
+
+      /* Projects */
+      .project-card {
+        padding: 2rem 0 2.25rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .project-card:first-child {
+        padding-top: 0;
+      }
+      .project-card h2 {
+        font-family: "Libre Caslon Text", Georgia, serif;
+        font-size: 1.65rem;
+        font-weight: 400;
+        color: var(--fg);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+      .team {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0.75rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      .team li {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.82rem;
+        color: var(--dim);
+        letter-spacing: 0.02em;
+      }
+      .team li .name {
+        color: var(--fg);
+        font-weight: 500;
+      }
+      .team li .role {
+        color: var(--accent);
+        font-weight: 400;
+        margin: 0 0.5rem;
+      }
+      .mentors {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.78rem;
+        color: var(--dim);
+        margin: 0.5rem 0 1.25rem 0;
+        letter-spacing: 0.02em;
+      }
+      .mentors .track-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-right: 0.6rem;
+        font-weight: 500;
+      }
+      .abstract {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.92rem;
+        line-height: 1.75;
+        color: rgba(232, 230, 225, 0.85);
+        font-weight: 300;
+      }
+
+      .fellows-section {
+        margin-top: 4rem;
+        padding-top: 2.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .fellows-heading {
+        font-family: "Libre Caslon Text", Georgia, serif;
+        font-size: 1.9rem;
+        font-weight: 400;
+        color: var(--fg);
+        margin-bottom: 0.75rem;
+      }
+      .fellows-intro {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.9rem;
+        color: var(--dim);
+        margin-bottom: 2rem;
+        font-weight: 300;
+        line-height: 1.7;
+      }
+      .fellow-card {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .fellow-card:last-child {
+        border-bottom: 0;
+      }
+      .fellow-card h3 {
+        font-family: "Libre Caslon Text", Georgia, serif;
+        font-size: 1.25rem;
+        color: var(--fg);
+        font-weight: 400;
+        margin-bottom: 0.15rem;
+      }
+      .fellow-meta {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        margin-bottom: 0.75rem;
+        font-weight: 400;
+      }
+      .fellow-bio {
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 0.9rem;
+        line-height: 1.75;
+        color: rgba(232, 230, 225, 0.85);
+        font-weight: 300;
       }
     </style>
   </head>
   <body>
+    <canvas id="canvas-bg"></canvas>
+
     <div id="app">
       <div class="nav">
         <nav
           class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center justify-between px-6 md:px-12 border-b"
           style="
             border-color: var(--border);
-            background: rgba(11, 12, 16, 0.75);
+            background: rgba(35, 45, 75, 0.75);
             backdrop-filter: blur(16px);
           "
         >
@@ -334,11 +371,11 @@
             class="flex items-center gap-3 no-underline"
             style="color: var(--fg)"
           >
-            <img src="/logo.svg" height="64" width="128" />
+            <img src="/Images/HooCS%20Reverse%20Logo%20No%20Text.svg" height="64" width="128" />
             <span
-              class="font-serif text-[1.15rem] font-semibold tracking-[0.04em] leading-tight"
+              class="font-serif text-[1.05rem] font-semibold tracking-[0.02em] leading-tight"
             >
-              HooCS
+              Hoomanistic Cognitive Science
               <span
                 class="block font-sans font-light tracking-[0.15em] uppercase"
                 style="font-size: 0.55rem; color: var(--dim)"
@@ -356,18 +393,9 @@
             class="md:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8 bg-transparent border-0 cursor-pointer"
             aria-label="Toggle navigation"
           >
-            <span
-              class="hamburger-bar block w-4 h-[1.5px] transition-all duration-200"
-              style="background: var(--fg)"
-            ></span>
-            <span
-              class="hamburger-bar block w-4 h-[1.5px] transition-all duration-200"
-              style="background: var(--fg)"
-            ></span>
-            <span
-              class="hamburger-bar block w-4 h-[.755px] transition-all duration-200"
-              style="background: var(--fg)"
-            ></span>
+            <span class="hamburger-bar block w-4 h-[1.5px] transition-all duration-200" style="background: var(--fg)"></span>
+            <span class="hamburger-bar block w-4 h-[1.5px] transition-all duration-200" style="background: var(--fg)"></span>
+            <span class="hamburger-bar block w-4 h-[.755px] transition-all duration-200" style="background: var(--fg)"></span>
           </button>
         </nav>
 
@@ -376,18 +404,14 @@
           class="fixed top-16 left-0 right-0 z-40 flex flex-col gap-6 px-8 py-8 md:hidden"
           style="
             display: none !important;
-            background: rgba(11, 12, 16, 0.96);
+            background: rgba(35, 45, 75, 0.96);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
           "
         >
           <a href="/" class="nav-link" style="font-size: 0.9rem">Home</a>
-          <a href="/speakers" class="nav-link" style="font-size: 0.9rem"
-            >Speakers</a
-          >
-          <a href="/shoocs" class="nav-link active" style="font-size: 0.9rem"
-            >SSHooCS</a
-          >
+          <a href="/speakers" class="nav-link" style="font-size: 0.9rem">Speakers</a>
+          <a href="/shoocs" class="nav-link active" style="font-size: 0.9rem">SSHooCS</a>
         </div>
       </div>
 
@@ -413,294 +437,435 @@
         })();
       </script>
 
-      <main class="fade-in pt-16">
-        <!--
-	<aside class="mixer-banner">
-          <div class="mixer-banner-inner">
-            <div class="mixer-banner-item">
-              <span class="mixer-banner-label">Team-Finding Mixer</span>
-              <span class="mixer-banner-value">May 6, 2026 · Cocke Hall</span>
+      <main class="relative z-10 max-w-5xl mx-auto px-6 md:px-12 pt-32 pb-16 fade-in">
+        <div class="hero-block">
+          <img
+            src="/Images/SSHooCS%20Logo.svg"
+            alt="SSHooCS — Summer Seminars in Humanistic Cognitive Science"
+            class="hero-logo"
+          />
+          <h1 class="page-title">
+            <span class="hl-yellow">Summer</span> Seminars<br />
+            in <em>Humanistic<br />
+            Cognitive Science</em>
+          </h1>
+          <p class="page-lede">
+            August 10–14, 2026 · University of Virginia · All sessions in Cocke Hall unless otherwise noted
+          </p>
+        </div>
+
+        <div class="tab-bar" role="tablist">
+          <button class="tab-btn active" data-tab="schedule" role="tab" aria-selected="true">Schedule</button>
+          <button class="tab-btn" data-tab="projects" role="tab" aria-selected="false">Projects</button>
+        </div>
+
+        <!-- SCHEDULE -->
+        <section id="tab-schedule" class="tab-panel" role="tabpanel">
+
+          <div class="schedule-day">
+            <h2>Monday · August 10</h2>
+            <div class="day-underline"></div>
+            <div class="slot">
+              <span class="time">10–11am</span>
+              <div class="session">Welcome and Breakfast<span class="room">Baltz Library · Cocke Hall</span></div>
             </div>
-            <div class="mixer-banner-divider" aria-hidden="true"></div>
-            <div class="mixer-banner-item">
-              <span class="mixer-banner-label">Team-Finding Form</span>
-              <a
-                href="https://forms.gle/k5fjQrT7Tky7t2GQ9"
-                target="_blank"
-                rel="noopener"
-                class="mixer-banner-value"
-                >forms.gle/k5fjQrT7Tky7t2GQ9</a
-              >
+            <div class="slot">
+              <span class="time">11am–1pm</span>
+              <div class="session">
+                The Boons and Pitfalls of Scientist–Philosophy Collaborations
+                <span class="lead">Zac Irving (with guest appearances)</span>
+              </div>
+            </div>
+            <div class="slot muted">
+              <span class="time">1–3pm</span>
+              <div class="session">Lunch<span class="room">Baltz Library · Cocke Hall</span></div>
+            </div>
+            <div class="slot muted">
+              <span class="time">3–5pm</span>
+              <div class="session">Work on Projects<span class="room">Baltz Library · Cocke Hall</span></div>
             </div>
           </div>
-        </aside>
-	-->
-        <div class="page-pad px-12">
-          <div class="max-w-3xl py-10">
-            <p
-              class="font-sans font-normal tracking-[0.2em] uppercase mb-6"
-              style="font-size: 0.7rem; color: var(--accent)"
-            >
-              Summer Seminars in Humanistic Cognitive Science
-            </p>
-            <h2
-              class="font-serif font-light mb-2"
-              style="font-size: clamp(2rem, 4vw, 3.2rem); color: #0b0c10"
-            >
-              SSHooCS
-            </h2>
-            <p
-              class="font-serif italic font-light mb-10"
-              style="font-size: 1.05rem; color: #666; letter-spacing: 0.01em"
-            >
-              Inaugural Cohort · August 11–18, 2026
-            </p>
 
-            <table class="facts-table">
-              <tbody>
-                <tr>
-                  <th>Format</th>
-                  <td>Six-day summer seminar</td>
-                </tr>
-                <tr>
-                  <th>Participants</th>
-                  <td>10–20 students (5–10 humanist/scientist teams)</td>
-                </tr>
-                <tr>
-                  <th>Who</th>
-                  <td>
-                    PhD students, advanced undergrads &amp; postdocs
-                    (interdisciplinary teams encouraged)
-                  </td>
-                </tr>
-                <tr>
-                  <th>When</th>
-                  <td>August 11–18, 2026</td>
-                </tr>
-                <tr>
-                  <th>Deadline</th>
-                  <td>Proposals due June 7, 2026</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="mb-11">
-              <p class="eyebrow-sm">About the Seminars</p>
-              <p class="body-copy">
-                The inaugural Summer Seminar in Humanistic Cognitive Science
-                (SSHooCS) will bring together a small cohort of humanist and
-                scientist students for six intensive days of cross-disciplinary
-                training, collaboration, and research development. Our approach
-                is modeled on the Duke Summer Seminars in Neuroscience and
-                Philosophy — arguably the world's most successful mechanism for
-                training humanistic cognitive scientists. Participants will
-                leave with a fully developed interdisciplinary research project
-                that they will complete in Academic Year 2026/2027, a network of
-                collaborators across UVA, and the concrete skills to pursue
-                interdisciplinary research and funding in HooCS and beyond.
-                SSHooCS will take place over six days between August 11–18
-                (with two days off for the weekend).
-              </p>
+          <div class="schedule-day">
+            <h2>Tuesday · August 11</h2>
+            <div class="day-underline"></div>
+            <div class="slot muted">
+              <span class="time">9:30–10am</span>
+              <div class="session">Coffee &amp; Snacks<span class="room">Baltz Library · Cocke Hall</span></div>
             </div>
-
-            <div class="mb-11">
-              <p class="eyebrow-sm">Who Should Apply</p>
-              <div class="apply-grid">
-                <div class="apply-cell">
-                  <h4>Graduate Students</h4>
-                  <p>
-                    Humanists and scientists will be given equal consideration.
-                  </p>
+            <div class="slot split">
+              <span class="time">10am–12pm</span>
+              <div class="split-tracks">
+                <div class="track">
+                  <span class="track-label">Humanists</span>
+                  <div class="track-title">
+                    Experiment Design
+                    <span class="lead">Jenn MacCormack</span>
+                    <span class="room">Cocke Hall 101</span>
+                  </div>
                 </div>
-                <div class="apply-cell">
-                  <h4>Select Undergraduates</h4>
-                  <p>
-                    Advanced undergraduates with research experience, plans for
-                    grad school, and a grad partner.
-                  </p>
-                </div>
-                <div class="apply-cell">
-                  <h4>Postdocs</h4>
-                  <p>Postdoctoral Fellows.</p>
+                <div class="track">
+                  <span class="track-label">Scientists</span>
+                  <div class="track-title">
+                    Mechanisms: from Brains to AI
+                    <span class="lead">Trey Boone</span>
+                    <span class="room">Cocke Hall 115</span>
+                  </div>
                 </div>
               </div>
-              <p class="pull-quote">
-                Team applications — one humanist and one scientist — will be
-                given preference in selection, but solo applications also
-                considered.
-              </p>
-              <p class="body-copy" style="margin-top: 1.25rem">
-                SSHooCS is designed to build bridges, not filter for those who
-                already speak multiple disciplinary languages. If you are a
-                philosopher curious about psychology, a psychologist drawn to
-                ethics, or a social scientist interested in contemplative
-                traditions, this is for you.
-              </p>
             </div>
-
-            <div class="mb-11">
-              <p class="eyebrow-sm">Seminar Structure</p>
-              <table class="row-table">
-                <tbody>
-                  <tr>
-                    <th class="muted">Mornings</th>
-                    <td>
-                      Cross-training seminars: 
-                      humanist faculty train scientist participants and vice versa, 
-                      building a shared vocabulary. 
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="muted">Afternoons</th>
-                    <td>
-                      Project development: humanist–scientist teams develop interdisciplinary 
-                      research projects. By the end of SSHooCS, participants will design 
-                      projects and translate them into short, fundable interdisciplinary 
-                      grant proposals with mentorship from HooCS faculty and Arts & Sciences 
-                      Research Development staff.
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="slot muted">
+              <span class="time">12–2pm</span>
+              <div class="session">Lunch<span class="room">Baltz Library · Cocke Hall</span></div>
             </div>
-
-            <div class="mb-11">
-              <p class="eyebrow-sm">What Participants Receive</p>
-              <table class="row-table">
-                <tbody>
-                  <tr>
-                    <th>Stipend</th>
-                    <td>Each HooCS participant receives a $1,000 stipend.</td>
-                  </tr>
-                  <tr>
-                    <th>Seed funding</th>
-                    <td>
-                      Teams receive up to $1,500 in research funds to complete
-                      their projects throughout 2026/2027.
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Research mentorship</th>
-                    <td>
-                      Sustained engagement with HooCS faculty across Philosophy,
-                      Psychology, Data Science, and the Contemplative Sciences.
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Grant development</th>
-                    <td>
-                      Mentorship on applying for external funding for
-                      interdisciplinary research (Templeton, Tiny Blue Dot, NEH,
-                      NSF, and others).
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>HooCS community</th>
-                    <td>
-                      Ongoing affiliation with the HooCS Hub, including biweekly
-                      lab meetings, data science support, and the broader
-                      research network.
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>SSNAP support</th>
-                    <td>
-                      Outstanding teams will receive mentorship from UVA to
-                      develop their projects into an application for SSNAP at
-                      Duke.
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="slot muted">
+              <span class="time">2–4pm</span>
+              <div class="session">Work on Projects<span class="room">Baltz Library · Cocke Hall</span></div>
             </div>
-
-            <div class="mb-4">
-              <p class="eyebrow-sm">How to Apply</p>
-              <p class="body-copy">
-                Applications must be submitted by
-                <strong style="color: #0b0c10; font-weight: 500"
-                  >June 7th, 2026</strong
-                >
-                to
-                <a
-                  href="mailto:hoocs@virginia.edu?subject=SSHooCS%20Inaugural%20Cohort%20Application"
-                  >hoocs@virginia.edu</a
-                >. Applications should be formatted as a single .pdf with:
-              </p>
-              <ul class="prose-list">
-                <li>
-                  A brief statement of interest (750 words max) describing your
-                  research background(s), what you hope to work on, and why
-                  SSHooCS is the right environment for this project.
-                </li>
-                <li>
-                  If applying as a team, a joint statement (250 words max)
-                  explaining how your backgrounds complement each other.
-                </li>
-                <li>Current CVs for each team member.</li>
-                <li>
-                  A list of potential faculty mentors (or, even better, a
-                  faculty member who has agreed to mentor the project).
-                </li>
-              </ul>
-              <p class="body-copy" style="margin-top: 1.25rem">
-                To find an interdisciplinary partner, you can fill out our
-                <a
-                  href="https://forms.gle/k5fjQrT7Tky7t2GQ9"
-                  target="_blank"
-                  rel="noopener"
-                  >Team Finding Form</a
-                >
-                <!--and/or attend our team-finding mixer on May 6, 11:00am–12:30pm
-		in Cocke Hall's Baltz Library-->.
-              </p>
-            </div>
-
-            <dl class="info-block">
-              <dt>Application Deadline</dt>
-              <dd>June 7, 2026</dd>
-              <dt>Questions &amp; Submissions</dt>
-              <dd>
-                <a
-                  href="mailto:hoocs@virginia.edu?subject=SSHooCS%20Inaugural%20Cohort%20Application"
-                  style="
-                    color: var(--accent);
-                    text-decoration: none;
-                    border-bottom: 1px solid rgba(76, 168, 176, 0.4);
-                  "
-                  >hoocs@virginia.edu</a
-                >
-              </dd>
-            </dl>
-
-            <a
-              href="mailto:hoocs@virginia.edu?subject=SSHooCS%20Inaugural%20Cohort%20Application"
-              class="cta-btn"
-              style="margin-top: 2.5rem"
-            >
-              Submit an Application
-            </a>
           </div>
-        </div>
+
+          <div class="schedule-day">
+            <h2>Wednesday · August 12</h2>
+            <div class="day-underline"></div>
+            <div class="slot muted">
+              <span class="time">9:30–10am</span>
+              <div class="session">Coffee &amp; Snacks<span class="room">Baltz Library · Cocke Hall</span></div>
+            </div>
+            <div class="slot split">
+              <span class="time">10am–12pm</span>
+              <div class="split-tracks">
+                <div class="track">
+                  <span class="track-label">Humanists</span>
+                  <div class="track-title">
+                    Causal Inference to Field Studies
+                    <span class="lead">Sheisha Kulkarni</span>
+                    <span class="room">Cocke Hall 101</span>
+                  </div>
+                </div>
+                <div class="track">
+                  <span class="track-label">Scientists</span>
+                  <div class="track-title">
+                    Bioethics
+                    <span class="lead">Justin Bernstein</span>
+                    <span class="room">Cocke Hall 115</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slot muted">
+              <span class="time">12–2pm</span>
+              <div class="session">Lunch<span class="room">Baltz Library · Cocke Hall</span></div>
+            </div>
+            <div class="slot muted">
+              <span class="time">2–4pm</span>
+              <div class="session">Work on Projects<span class="room">Baltz Library · Cocke Hall</span></div>
+            </div>
+          </div>
+
+          <div class="schedule-day">
+            <h2>Thursday · August 13</h2>
+            <div class="day-underline"></div>
+            <div class="slot muted">
+              <span class="time">9–9:30am</span>
+              <div class="session">Coffee &amp; Snacks<span class="room">Baltz Library · Cocke Hall</span></div>
+            </div>
+            <div class="slot">
+              <span class="time">9:30–12pm</span>
+              <div class="session">
+                Contemplative Humanities: Dream Yoga Close Reading
+                <span class="lead">Michael Sheehy</span>
+                <span class="room">Baltz Library · Cocke Hall</span>
+              </div>
+            </div>
+            <div class="slot muted">
+              <span class="time">12–2pm</span>
+              <div class="session">Lunch<span class="room">Baltz Library · Cocke Hall</span></div>
+            </div>
+            <div class="slot">
+              <span class="time">2–4pm</span>
+              <div class="session">Contemplative Sciences: Dream Yoga VR<span class="room">Baltz Library · Cocke Hall</span></div>
+            </div>
+          </div>
+
+          <div class="schedule-day">
+            <h2>Friday · August 14</h2>
+            <div class="day-underline"></div>
+            <div class="slot">
+              <span class="time">10am–12pm</span>
+              <div class="session">
+                Grant Writing Workshop
+                <span class="loc">New Cabell Hall 506</span>
+                <span class="lead">Caitlin Charos and Trisha Dant</span>
+              </div>
+            </div>
+            <div class="slot muted">
+              <span class="time">12–2pm</span>
+              <div class="session">Lunch<span class="room">Baltz Library · Cocke Hall</span></div>
+            </div>
+            <div class="slot">
+              <span class="time">2–4pm</span>
+              <div class="session">
+                Press Workshop
+                <span class="lead">Russ Bahorsky, Blaire Weiman &amp; Marshall Eckblad</span>
+                <span class="room">Baltz Library · Cocke Hall</span>
+              </div>
+            </div>
+            <div class="slot">
+              <span class="time">6–9pm</span>
+              <div class="session">
+                Indian Street Food
+                <span class="loc">Zac Irving's House · 211 Huntley Ave</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="schedule-day">
+            <h2>Monday · August 24</h2>
+            <div class="day-underline"></div>
+            <div class="slot">
+              <span class="time">Morning</span>
+              <div class="session">
+                Ethics and Science in AI
+                <span class="lead">David Danks</span>
+              </div>
+            </div>
+            <div class="slot muted">
+              <span class="time">Lunch</span>
+              <div class="session">Lunch<span class="room">Baltz Library · Cocke Hall</span></div>
+            </div>
+            <div class="slot muted">
+              <span class="time">Afternoon</span>
+              <div class="session">Work on Projects<span class="room">Baltz Library · Cocke Hall</span></div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="tab-projects" class="tab-panel" role="tabpanel" hidden>
+
+          <article class="project-card">
+            <h2>Cognitive Off-Loading in AI Therapy</h2>
+            <ul class="team">
+              <li><span class="name">Sarah Albers</span><span class="role">Scientist</span>Data Science, UVA</li>
+              <li><span class="name">Arnold Chen</span><span class="role">Humanist</span>Philosophy, UVA</li>
+            </ul>
+            <p class="mentors"><span class="track-label">Mentors</span>Justin Bernstein (Humanities) · David Danks (Science)</p>
+            <p class="abstract">This project investigates whether AI-assisted therapy causes deskilling or "never-skilling" of emotional self-regulation. The central argument is that LLMs dispense "knowledge that" (propositional knowledge about emotions and coping) while bypassing the habituation and agential control required for "knowledge how" — the practical, embodied competence needed to actually regulate one's emotions. If AI therapy substitutes for the experiential work of developing emotional agency, it may threaten personal autonomy and authentic emotional development. The project combines empirical psychology (studying whether AI-assisted therapy improves or impairs real-world emotional regulation) with philosophical analysis (drawing on the knowledge-that / knowledge-how distinction and theories of autonomy and agency).</p>
+          </article>
+
+          <article class="project-card">
+            <h2>Mechanistic Models of Mind-Wandering</h2>
+            <ul class="team">
+              <li><span class="name">Dexin Li</span><span class="role">Humanist</span>Philosophy, UVA</li>
+              <li><span class="name">Christopher Hall</span><span class="role">Scientist</span>Psychology / Neuroscience, UVA</li>
+            </ul>
+            <p class="mentors"><span class="track-label">Mentors</span>Trey Boone (Humanities) · Per Sederberg (Science)</p>
+            <p class="abstract">Existing computational models of mind-wandering are underdeveloped relative to the richness of philosophical and empirical work on the topic. This project compares two mechanistic accounts: Foraging Decisionism, which treats mind-wandering as goal-directed memory search (the mind "foraging" for useful information), and Semantic Associationism, which treats it as a random walk on memory networks driven by semantic association. The team evaluates these accounts against three desiderata — Dynamics, Passivity, and Function — then aims to build computational models that generate testable predictions constrained by fMRI resting-state data.</p>
+          </article>
+
+          <article class="project-card">
+            <h2>Affect, Arousal &amp; Attentional Constraints on Thought</h2>
+            <ul class="team">
+              <li><span class="name">Jelena Markovic</span><span class="role">Humanist</span>Contemplative Sciences &amp; Philosophy, UVA (Postdoc)</li>
+              <li><span class="name">Ethan Potter</span><span class="role">Scientist</span>Applied Neuroscience &amp; Philosophy, UVA</li>
+            </ul>
+            <p class="mentors"><span class="track-label">Mentors</span>Zachary Irving (Humanities) · Jennifer MacCormack (Science) · Michael Sheehy (Humanities)</p>
+            <p class="abstract">Using the Thinking Grid framework (Irving et al.), this project studies how affective and somatic states influence attentional constraint on thought. Participants undergo a writing-task mood induction designed to produce four affective states varying in valence and arousal (relaxed, energized, sluggish, stressed). The project aims to replicate Irving et al.'s finding that both positive and negative affect constrain attention, and to determine which aspect of affect drives this — specifically, do low-arousal positive states broaden attention relative to high-arousal positive states? The project combines empirical methods (experience sampling, Thinking Grid) with philosophical analysis of the relationship between emotion, attention, and the phenomenology of thought.</p>
+          </article>
+
+          <article class="project-card">
+            <h2>Dark Humor Memes &amp; Collective Existential Stressors</h2>
+            <ul class="team">
+              <li><span class="name">Caimiao (Cai) Liu</span><span class="role">Scientist</span>Social Psychology, UVA</li>
+              <li><span class="name">Jason Wong</span><span class="role">Humanist</span>Philosophy, UVA</li>
+            </ul>
+            <p class="mentors"><span class="track-label">Mentors</span>Justin Snedegar (Humanities) · Adrienne Wood (Science)</p>
+            <p class="abstract">This project studies how people use online dark humor memes to cope with collective existential stressors — AI-driven economic disruption, climate change, and political instability — and how this coping behavior shapes social connection, solidarity, and moral perception. Using empirical social psychology methods (surveys, experiments), the project examines when dark humor promotes healthy coping versus maladaptive avoidance, and how it affects group cohesion and moral attitudes. Philosophical analysis (drawing on the ethics of humor, norms of agency, and social epistemology) provides the conceptual framework for interpreting these findings.</p>
+          </article>
+
+          <article class="project-card">
+            <h2>AI Use &amp; Scientific Exploration: An Agent-Based Model</h2>
+            <ul class="team">
+              <li><span class="name">Chad Davis</span><span class="role">Scientist</span>Quantitative Psychology / Statistics, UVA</li>
+              <li><span class="name">Blake Harris</span><span class="role">Humanist</span>Philosophy, UVA</li>
+              <li><span class="name">Zhengping Zhang</span><span class="role">Humanist</span>Philosophy, UVA</li>
+            </ul>
+            <p class="mentors"><span class="track-label">Mentors</span>Zachary Irving (Humanities) · David Danks (Science)</p>
+            <p class="abstract">This project investigates how AI reliance threatens "transient diversity" in scientific communities: the healthy spread of hypotheses and approaches that allows science to explore the epistemic landscape effectively. Building on Zollman's agent-based model of scientific communities, the team extends the framework by adding AI as an influence on belief updating and scientific exploration, using NK landscapes to model hypothesis space. The central question is this: does AI cause researchers to converge prematurely on average hypotheses rather than exploring diverse epistemic terrain? The project combines agent-based modeling and computational methods (Davis) with philosophical analysis of scientific epistemology, epistemic autonomy, and AI's effects on knowledge production (Harris, Zhang).</p>
+          </article>
+
+          <article class="project-card">
+            <h2>Mental Turbulence as a Dynamical Mode: fMRI &amp; Philosophy</h2>
+            <ul class="team">
+              <li><span class="name">Rushil Umaretiya</span><span class="role">Humanist &amp; Scientist</span>Philosophy &amp; Computer Science, UVA</li>
+              <li><span class="name">Austin Cooper</span><span class="role">Scientist</span>Contemplative Sciences Center, UVA (Postdoc)</li>
+            </ul>
+            <p class="mentors"><span class="track-label">Mentors</span>Lauren DiNicola (Science) · Zachary Irving (Humanities) · Michael Sheehy (Humanities)</p>
+            <p class="abstract">The folk concept of "mental turbulence" conflates two distinct phenomena: free mind-wandering (broad default-network exploration) and anxious rumination (narrow state-space occupation). This project proposes to define turbulence rigorously as a dynamical mode using dynamic functional connectivity tools (fractional occupancy, metastability), connecting it to the Christoff / Irving constraint axes. The project then uses these tools to build ML classifiers capable of distinguishing different dynamic modes of attention from fMRI data, with the long-term goal of enabling real-time neurofeedback that allows individuals to monitor and modulate their own attentional mode.</p>
+          </article>
+
+          <div class="fellows-section">
+            <h2 class="fellows-heading">SSHooCS Fellows</h2>
+            <p class="fellows-intro">The following participants are attending SSHooCS as Fellows — embedded in the seminar community but not working on a funded project this year.</p>
+
+            <article class="fellow-card">
+              <h3>Karma Rigzin</h3>
+              <p class="fellow-meta">Humanist Fellow · Buddhist &amp; Himalayan Studies, UVA</p>
+              <p class="fellow-bio">Karma is a 3rd-year PhD student specializing in Tibetan Buddhist philosophy, with extensive fieldwork in Bhutan and fluency in Tibetan. His work focuses on the Dzogchen and Longchenpa traditions, examining how Tibetan-Bhutanese intellectual frameworks on attention, ethics, karma, and agency can serve as genuine partners in humanistic cognitive science. Karma is attending SSHooCS to build connections with cognitive scientists and develop an interdisciplinary research project.</p>
+            </article>
+
+            <article class="fellow-card">
+              <h3>Gabi Dumet</h3>
+              <p class="fellow-meta">Humanist Fellow · Philosophy, UVA</p>
+              <p class="fellow-bio">Gabi is a later-stage Philosophy PhD candidate working on moral psychology, reactive attitudes, and moral responsibility (Strawsonian framework). He is interested in the cognitive-science grounding of reactive attitudes and the mechanisms of emotional fragmentation. Gabi is one of the founding members of the HooCS community at UVA and is attending SSHooCS to build the interdisciplinary foundations for an empirical extension of his philosophical work.</p>
+            </article>
+          </div>
+
+        </section>
       </main>
 
-      <!-- ── FOOTER ────────────────────────────────────────────────────────── -->
-      <footer
-        class="relative z-10 flex flex-wrap items-center justify-between gap-4 px-12 py-10"
-        style="font-size: 0.75rem; letter-spacing: 0.06em; font-weight: 300"
-      >
-        <div class="flex flex-col gap-1">
-          <span
-            class="font-serif footer-logo"
-            style="font-size: 1rem; letter-spacing: 0.04em"
-          >
-            HooCS Hub
-          </span>
-          <span>Humanistic Cognitive Science · University of Virginia</span>
-        </div>
-        <div>Department of Philosophy · Charlottesville, VA 22904</div>
-        <div>© 2026 University of Virginia</div>
+      <footer class="relative z-10 flex flex-col gap-1 px-6 md:px-12 py-10">
+        <span class="font-serif" style="font-size: 1rem; color: var(--fg); letter-spacing: 0.04em">HooCS Hub</span>
+        <span>Humanistic Cognitive Science · University of Virginia</span>
+        <span><a href="mailto:hoocs@virginia.edu" style="color: inherit; text-decoration: none; border-bottom: 1px solid rgba(232, 230, 225, 0.25)">hoocs@virginia.edu</a> · <span id="year"></span> University of Virginia</span>
+        <script>
+          document.getElementById("year").textContent =
+            "© " + new Date().getFullYear();
+        </script>
       </footer>
     </div>
+
+    <script>
+      (function () {
+        const tabs = document.querySelectorAll(".tab-btn");
+        const panels = {
+          schedule: document.getElementById("tab-schedule"),
+          projects: document.getElementById("tab-projects"),
+        };
+        function setTab(name) {
+          if (!panels[name]) name = "schedule";
+          tabs.forEach((b) => {
+            const active = b.dataset.tab === name;
+            b.classList.toggle("active", active);
+            b.setAttribute("aria-selected", active ? "true" : "false");
+          });
+          Object.entries(panels).forEach(([k, el]) => {
+            if (k === name) el.removeAttribute("hidden");
+            else el.setAttribute("hidden", "");
+          });
+          if (history.replaceState) {
+            history.replaceState(null, "", "#" + name);
+          }
+        }
+        tabs.forEach((b) =>
+          b.addEventListener("click", () => setTab(b.dataset.tab)),
+        );
+        const initial =
+          (location.hash || "").replace("#", "") || "schedule";
+        setTab(initial);
+        window.addEventListener("hashchange", () =>
+          setTab((location.hash || "").replace("#", "") || "schedule"),
+        );
+      })();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script>
+      (function () {
+        const canvas = document.getElementById("canvas-bg");
+        const renderer = new THREE.WebGLRenderer({
+          canvas,
+          antialias: true,
+          alpha: true,
+        });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
+        camera.position.z = 80;
+
+        const N = 90;
+        const velocities = [];
+        const nodeGeo = new THREE.SphereGeometry(0.35, 6, 6);
+        const lineMat = new THREE.LineBasicMaterial({
+          color: 0xF9DCBF,
+          transparent: true,
+          opacity: 0.18,
+        });
+
+        const nodes = [];
+        for (let i = 0; i < N; i++) {
+          const mat = new THREE.MeshBasicMaterial({
+            color: 0xE57200,
+            transparent: true,
+            opacity: 0.55,
+          });
+          const mesh = new THREE.Mesh(nodeGeo, mat);
+          mesh.position.set(
+            (Math.random() - 0.5) * 160,
+            (Math.random() - 0.5) * 100,
+            (Math.random() - 0.5) * 60,
+          );
+          velocities.push(
+            new THREE.Vector3(
+              (Math.random() - 0.5) * 0.018,
+              (Math.random() - 0.5) * 0.012,
+              (Math.random() - 0.5) * 0.008,
+            ),
+          );
+          scene.add(mesh);
+          nodes.push(mesh);
+        }
+
+        let lineSegs = null;
+        function buildLines() {
+          if (lineSegs) {
+            scene.remove(lineSegs);
+            lineSegs.geometry.dispose();
+          }
+          const pts = [];
+          for (let i = 0; i < N; i++)
+            for (let j = i + 1; j < N; j++)
+              if (nodes[i].position.distanceTo(nodes[j].position) < 28)
+                pts.push(nodes[i].position.clone(), nodes[j].position.clone());
+          lineSegs = new THREE.LineSegments(
+            new THREE.BufferGeometry().setFromPoints(pts),
+            lineMat,
+          );
+          scene.add(lineSegs);
+        }
+
+        let frame = 0;
+        function animate() {
+          requestAnimationFrame(animate);
+          frame++;
+          for (let i = 0; i < N; i++) {
+            nodes[i].position.addScaledVector(velocities[i], 1);
+            const p = nodes[i].position;
+            if (Math.abs(p.x) > 82) velocities[i].x *= -1;
+            if (Math.abs(p.y) > 52) velocities[i].y *= -1;
+            if (Math.abs(p.z) > 32) velocities[i].z *= -1;
+          }
+          if (frame % 3 === 0) buildLines();
+          camera.position.x = Math.sin(frame * 0.0004) * 5;
+          camera.position.y = Math.cos(frame * 0.0003) * 3;
+          camera.lookAt(0, 0, 0);
+          renderer.render(scene, camera);
+        }
+
+        function resize() {
+          const w = window.innerWidth,
+            h = window.innerHeight;
+          renderer.setSize(w, h);
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+        }
+        window.addEventListener("resize", resize);
+        resize();
+        buildLines();
+        animate();
+      })();
+    </script>
   </body>
 </html>
