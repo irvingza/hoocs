@@ -218,11 +218,11 @@
 
         <div class="max-w-3xl mx-auto pb-20">
           <div class="tab-bar" role="tablist">
-            <button class="tab-btn active" data-tab="25-26" role="tab" aria-selected="true">25–26</button>
-            <button class="tab-btn" data-tab="fall-26" role="tab" aria-selected="false">Fall 2026</button>
+            <button class="tab-btn active" data-tab="fall-26" role="tab" aria-selected="true">Fall 2026</button>
+            <button class="tab-btn" data-tab="25-26" role="tab" aria-selected="false">25–26</button>
           </div>
 
-          <section id="tab-25-26" class="tab-panel" role="tabpanel">
+          <section id="tab-25-26" class="tab-panel" role="tabpanel" hidden>
             <table class="speakers-table">
               <thead>
                 <tr>
@@ -303,14 +303,43 @@
             </div>
           </section>
 
-          <section id="tab-fall-26" class="tab-panel" role="tabpanel" hidden>
+          <section id="tab-fall-26" class="tab-panel" role="tabpanel">
             <p
               class="font-sans font-light mb-8 text-center"
               style="font-size: 0.85rem; color: var(--dim); letter-spacing: 0.04em"
             >
-              Meetings are Mondays, 10&ndash;11:30am (unless otherwise
-              specified), in the Balz Library in Cocke Hall.
+              Meetings are Mondays, 10&ndash;11:30am, in the Balz Library in
+              Cocke Hall.
             </p>
+
+            <div
+              class="mb-8 p-5"
+              style="
+                border-left: 2px solid var(--accent2);
+                background: rgba(232, 230, 225, 0.03);
+              "
+            >
+              <p style="font-size: 0.82rem; color: var(--dim); line-height: 1.65">
+                <strong style="color: var(--fg)">Note:</strong> HooCS members
+                can sign up for a presentation with the
+                <a
+                  href="https://docs.google.com/spreadsheets/d/1JnIaex0uYjlDKx3bN-91kckSVoKY8tNInPaNFlwTcwY/edit?gid=2084945952#gid=2084945952"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="underline"
+                  style="color: var(--accent)"
+                  >signup sheet</a
+                >. To be added to the HooCS Hub mailing list and Outlook
+                Calendar, please
+                <a
+                  href="mailto:hoocs@virginia.edu"
+                  class="underline"
+                  style="color: var(--accent)"
+                  >contact us</a
+                >.
+              </p>
+            </div>
+
             <table class="speakers-table">
               <thead>
                 <tr>
@@ -373,34 +402,6 @@
                 </tr>
               </tbody>
             </table>
-
-            <div
-              class="mt-8 p-5"
-              style="
-                border-left: 2px solid var(--accent2);
-                background: rgba(232, 230, 225, 0.03);
-              "
-            >
-              <p style="font-size: 0.82rem; color: var(--dim); line-height: 1.65">
-                <strong style="color: var(--fg)">Note:</strong> The schedule is
-                subject to change. To claim an available slot, add yourself to
-                the
-                <a
-                  href="https://docs.google.com/spreadsheets/d/1JnIaex0uYjlDKx3bN-91kckSVoKY8tNInPaNFlwTcwY/edit?gid=2084945952#gid=2084945952"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="underline"
-                  style="color: var(--accent)"
-                  >signup sheet</a
-                >. To be added to the Lab mailing list, please
-                <a
-                  href="mailto:hoocs@virginia.edu"
-                  class="underline"
-                  style="color: var(--accent)"
-                  >contact us</a
-                >.
-              </p>
-            </div>
           </section>
         </div>
       </main>
@@ -413,7 +414,7 @@
             "fall-26": document.getElementById("tab-fall-26"),
           };
           function setTab(name) {
-            if (!panels[name]) name = "25-26";
+            if (!panels[name]) name = "fall-26";
             tabs.forEach((b) => {
               const active = b.dataset.tab === name;
               b.classList.toggle("active", active);
@@ -430,10 +431,10 @@
           tabs.forEach((b) =>
             b.addEventListener("click", () => setTab(b.dataset.tab)),
           );
-          const initial = (location.hash || "").replace("#", "") || "25-26";
+          const initial = (location.hash || "").replace("#", "") || "fall-26";
           setTab(initial);
           window.addEventListener("hashchange", () =>
-            setTab((location.hash || "").replace("#", "") || "25-26"),
+            setTab((location.hash || "").replace("#", "") || "fall-26"),
           );
         })();
       </script>
